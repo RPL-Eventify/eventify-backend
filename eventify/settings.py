@@ -91,6 +91,9 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
+        'OPTIONS': {
+            'options': f'-c search_path={env("DB_SCHEMA")}'
+        }
     }
 }
 
