@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'drf_standardized_errors',
     'apps.para',
     'apps.utils',
+    'apps.user',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+# Auth
+AUTH_USER_MODEL = 'user.User'
