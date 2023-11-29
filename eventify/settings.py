@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
     'localhost',
     'eventify.adaptable.app',
     'eventify-dev.adaptable.app',
+    '*',
 ]
 
 CORS_ALLOWED_ORIGINS = [
