@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
+
 import environ
 
 # Env
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'apps.utils',
     'apps.user',
     'rest_framework_simplejwt.token_blacklist',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +149,9 @@ REST_FRAMEWORK = {
 
 # Auth
 AUTH_USER_MODEL = 'user.User'
+
+# JWT
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(weeks=1),
+}
