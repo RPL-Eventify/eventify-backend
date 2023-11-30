@@ -48,3 +48,17 @@ class AktivitasDetailView(RetrieveAPIView):
             return aktivitas
         except Aktivitas.DoesNotExist:
             raise NotFound(f"Aktivitas dengan id {id_param} tidak ditemukan", code="Activity_Not_Found")
+
+
+class AcaraDetailView(RetrieveAPIView):
+    serializer_class = AcaraSerializer
+    permission_classes = [IsAuthenticated, IsCurrentUserOrReadOnly]
+
+    def get_object(self):
+        id_param = self.kwargs.get('id')
+        try:
+            acara = Acara.objects.get(id=id_param)
+            self.check_object_permissions(self.request, acara)
+            return acara
+        except Acara.DoesNotExist:
+            raise NotFound(f"Acara dengan id {id_param} tidak ditemukan", code="Acara_Not_Found")
