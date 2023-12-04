@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
+
 import environ
 
 # Env
@@ -30,7 +32,20 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'eventify.adaptable.app',
+    'eventify-dev.adaptable.app',
+    '*',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'http://localhost:3000',
+    'https://eventify-dev.adaptable.app',
+    'https://eventify.adaptable.app',
+]
 
 # Application definition
 
@@ -48,11 +63,14 @@ INSTALLED_APPS = [
     'apps.utils',
     'apps.user',
     'rest_framework_simplejwt.token_blacklist',
+    'django_filters',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -146,3 +164,9 @@ REST_FRAMEWORK = {
 
 # Auth
 AUTH_USER_MODEL = 'user.User'
+
+# JWT
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(weeks=1),
+}
