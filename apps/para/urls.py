@@ -12,4 +12,6 @@ urlpatterns = [
     path('acara/<uuid:id>/archive/', views.ArchiveAcaraView.as_view(), name='archive-acara'),
     path('aktivitas/<uuid:id>/unarchive/', views.UnarchiveAktivitasView.as_view(), name='unarchive-aktivitas'),
     path('acara/<uuid:id>/unarchive/', views.UnarchiveAcaraView.as_view(), name='unarchive-acara'),
+    path('archived/aktivitas/<uuid:id>/delete/', views.AktivitasDeleteView.as_view(), name='archived-aktivitas-delete'),
+    path('archived/acara/<uuid:id>/delete/', views.AcaraDeleteView.as_view(), name='archived-acara-delete'),
 ]
