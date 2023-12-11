@@ -45,6 +45,11 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'https://eventify-dev.adaptable.app',
     'https://eventify.adaptable.app',
+    'https://rpl-eventify.vercel.app',
+]
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r'https://eventify-frontend-\w+-rpl-eventify\.vercel\.app/'
 ]
 
 # Application definition
