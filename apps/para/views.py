@@ -22,6 +22,10 @@ class AktivitasView(ListCreateAPIView):
         return Aktivitas.objects.filter(pemilik=user)
 
     def perform_create(self, serializer):
+        tenggat_waktu = self.request.data.get('tenggat_waktu')
+        kategori = self.request.data.get('kategori')
+        if kategori == 'projects' and not tenggat_waktu:
+            raise ParseError(f"Tenggat Waktu tidak boleh kosong", code="Empty_Tenggat_Waktu")
         serializer.save(pemilik=self.request.user)
 
 
